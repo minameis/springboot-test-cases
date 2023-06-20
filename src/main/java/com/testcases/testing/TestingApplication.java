@@ -27,7 +27,7 @@ public class TestingApplication  implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		log.info("Starting  save ");
 		// save a couple of users
-		repository.save(new User("Jack", "jack@beanstalk.com"));
-		repository.save(new User("John", "john@gmail.com"));
+		repository.save(new User(1l, "Jack", "jack@beanstalk.com"));
+		repository.save(new User(2l,"John", "john@gmail.com"));
 	}
 }
