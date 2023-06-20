@@ -13,6 +13,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.util.ResourceUtils;
 
+/**
+ * This test takes a short time to launch, you need Docker to be running locally
+ *
+ * It is loading in config from application-test.properties
+ */
 @SpringBootTest(classes = {TestingApplication.class, TestContainerConfig.class})
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @TestPropertySource(ResourceUtils.CLASSPATH_URL_PREFIX + "application-test.properties")
@@ -24,32 +29,32 @@ class TestContainerApplicationTests {
 
 	@Test
 	@DisplayName("Should get a total count of all users")
-	void getTotalUserCount(){
-		//When
+	void getTotalUserCount() {
+		// When
 		int count = jdbc.queryForObject("SELECT COUNT(*) FROM USERS", Integer.class);
 
-		//Then
+		// Then
 		assertEquals(4, count);
 	}
 
 
 	@Test
 	@DisplayName("Should check first record's name is Jack")
-	void  checkNameOfExistingUserBeforeChange(){
-		//When
+	void  checkNameOfExistingUserBeforeChange() {
+		// When
 		String name = jdbc.queryForObject("select name from users WHERE id=1", String.class);
 
-		//Then
+		// Then
 		assertEquals("Jack", name);
 	}
 
 	@Test
 	@DisplayName("Should modify existing user's name to newName")
-	void modifyExistingUser(){
-		//When
+	void modifyExistingUser() {
+		// When
 		var update = jdbc.update("UPDATE USERS SET name='newName' WHERE id=2");
 
-		//Then
+		// Then
 		assertEquals(1, update);
 	}
 
@@ -57,10 +62,10 @@ class TestContainerApplicationTests {
 	@Test
 	@DisplayName("Should check updated name is newName")
 	void verifyNameOfExistingUser(){
-		//When
+		// When
 		String name = jdbc.queryForObject("select name from users WHERE id=2", String.class);
 
-		//Then
+		// Then
 		assertEquals("newName", name);
 	}
 

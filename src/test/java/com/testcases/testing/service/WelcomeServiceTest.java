@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 
 import com.testcases.testing.util.Calculator;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -23,17 +24,20 @@ public class WelcomeServiceTest {
   }
 
   @Test
+  @DisplayName("Should show default welcome message")
   void welcomeServiceReturnsHelloWorld(){
     assertEquals("Hello, World!", welcomeService.welcome("World"));
   }
 
   @Test
+  @DisplayName("Should show custom welcome message")
   void welcomeServiceReturnsHelloFred(){
     assertEquals("Hello, Fred!", welcomeService.welcome("Fred"));
   }
 
   @Test
-  void onePlusTwoDoesNotEqualsFour(){
+  @DisplayName("Should check World is not the same as User")
+  void checkHelloUserDoesNotEqualHelloWorld(){
     assertNotEquals("Hello, User!", welcomeService.welcome("World"));
   }
 

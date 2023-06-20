@@ -3,23 +3,35 @@ package com.testcases.testing.util;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
 /**
  * Standalone JUnit test
- * JUnit is a unit testing framework that focuses on writing and executing test cases for individual units of code
+ * When testing pure logic
+ *
  */
 public class CalculatorTest {
 
   @Test
-  void onePlusTwoEqualsThree(){
+  @DisplayName("Calls calculator module to calculate 1 + 2 equals 3")
+  void onePlusTwoEqualsThree() {
+    // When
     Calculator calculator = new Calculator();
-    assertEquals(3, calculator.sum(1,2));
+    int sum = calculator.sum(1,2);
+
+    // Then
+    assertEquals(3, sum);
   }
   @Test
-  void onePlusTwoDoesNotEqualsFour(){
+  @DisplayName("Calls calculator module to calculate 1 + 2 does not equal 4")
+  void onePlusTwoDoesNotEqualsFour() {
+    // When
     Calculator calculator = new Calculator();
-    assertNotEquals(4, calculator.sum(1,2));
+    int sum = calculator.sum(1,2);
+
+    // Then
+    assertNotEquals(4, sum);
   }
 }

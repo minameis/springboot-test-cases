@@ -16,10 +16,13 @@ import org.testcontainers.containers.PostgreSQLContainer;
  */
 public class TestContainerConfig {
 
+  // Launch postgres and run init script
     @ClassRule
     private PostgreSQLContainer<?> postgre = new PostgreSQLContainer<>("postgres:9.6.18-alpine")
     .withInitScript("init-db.sql");
 
+    // Configure data source a per config file application-test.properties
+    // passed in by TestContainerApplicationTests.java
     @Bean
     public DataSource getDataSource(){
     postgre.start();
